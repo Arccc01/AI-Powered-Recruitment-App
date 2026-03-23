@@ -164,7 +164,7 @@ async function login(req, res, next) {
 }
 
 // profile controller
-async function profile(req, res, next) {
+async function getme(req, res, next) {
   try {
     const { data: user, error } = await supabaseAdmin
       .from("users_meta")
@@ -199,6 +199,6 @@ const logout = async (req, res) => {
 module.exports = {
   signup,
   login,
-  profile,
+  getme,
   logout,
 };

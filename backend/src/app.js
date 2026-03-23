@@ -3,9 +3,10 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
-const authRoutes = require("./routes/auth.routes");
 const cookieParser = require('cookie-parser');
 const { errorHandler, notFound } = require("./middleware/errorHandler");
+const authRoutes = require("./routes/auth.routes");
+const profileRoutes = require("./routes/profile.routes")
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/api/auth", authLimiter, authRoutes);
+app.use("/api/profile",authLimiter,profileRoutes)
 
 app.use(notFound);
 app.use(errorHandler);
