@@ -1,0 +1,76 @@
+.page-wrap    { max-width: 1000px; margin: 0 auto; padding: 32px 20px; }
+.page-title   { font-size: 24px; color: #1e1b4b; margin-bottom: 24px; }
+
+/* stats */
+.stats-grid   { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 32px; }
+.stat-card    { background: white; padding: 24px; border-radius: 10px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.stat-card h3 { font-size: 32px; color: #4f46e5; }
+.stat-card p  { color: #6b7280; font-size: 14px; margin-top: 4px; }
+.stat-card.green h3 { color: #16a34a; }
+.stat-card.red h3   { color: #dc2626; }
+.stat-card.blue h3  { color: #2563eb; }
+
+/* quick actions */
+.quick-actions  { background: white; padding: 24px; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.quick-actions h3 { margin-bottom: 16px; color: #1e1b4b; }
+.actions-grid   { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.action-card    { padding: 24px; border: 1px solid #e5e7eb; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.action-card:hover { border-color: #4f46e5; background: #eef2ff; }
+.action-card span { font-size: 32px; }
+.action-card p  { margin-top: 8px; font-weight: 500; color: #374151; }
+
+/* filters */
+.filters-row  { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+
+/* jobs grid */
+.jobs-grid    { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.job-card     { background: white; padding: 20px; border-radius: 10px; cursor: pointer; border: 1px solid #e5e7eb; transition: all 0.2s; }
+.job-card:hover { border-color: #4f46e5; box-shadow: 0 4px 12px rgba(79,70,229,0.1); }
+.job-header   { display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px; }
+.job-header h3{ font-size: 16px; color: #1e1b4b; }
+.job-location { font-size: 13px; color: #6b7280; margin-bottom: 8px; }
+.job-desc     { font-size: 13px; color: #374151; margin-bottom: 12px; line-height: 1.5; }
+.job-skills   { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag    { background: #eef2ff; color: #4f46e5; padding: 3px 10px; border-radius: 20px; font-size: 12px; }
+.skill-tag.red{ background: #fee2e2; color: #dc2626; }
+.job-salary   { font-size: 13px; color: #16a34a; margin-top: 10px; font-weight: 500; }
+
+/* job detail */
+.back-btn         { margin-bottom: 16px; }
+.job-detail-card  { padding: 32px; }
+.job-detail-header{ display: flex; justify-content: space-between; align-items: start; margin-bottom: 24px; }
+.job-detail-header h2 { font-size: 22px; color: #1e1b4b; margin-bottom: 8px; }
+.job-detail-actions { display: flex; gap: 12px; }
+.job-section      { margin-top: 24px; }
+.job-section h4   { font-size: 15px; color: #374151; margin-bottom: 10px; }
+.match-box        { background: #f5f3ff; border: 1px solid #c4b5fd; border-radius: 10px; padding: 20px; margin: 20px 0; }
+.match-box h4     { color: #4f46e5; margin-bottom: 8px; }
+.match-skills     { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; }
+.match-label      { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.match-label.green{ color: #16a34a; }
+.match-label.red  { color: #dc2626; }
+
+/* applications */
+.applications-list{ display: flex; flex-direction: column; gap: 16px; }
+.app-card         { padding: 20px; }
+.app-header       { display: flex; justify-content: space-between; align-items: start; }
+.app-header h3    { font-size: 16px; color: #1e1b4b; margin-bottom: 6px; }
+.app-footer       { display: flex; justify-content: space-between; margin-top: 12px; }
+.app-date         { font-size: 13px; color: #6b7280; }
+.match-score      { font-size: 13px; color: #4f46e5; font-weight: 500; }
+
+/* profile */
+.profile-card     { display: flex; align-items: center; gap: 20px; padding: 24px; margin-bottom: 20px; }
+.profile-avatar   { width: 60px; height: 60px; border-radius: 50%; background: #4f46e5; color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; }
+.upload-card      { margin-bottom: 20px; }
+.upload-card h3   { margin-bottom: 4px; }
+.upload-hint      { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.upload-row       { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.resume-link      { color: #4f46e5; font-size: 14px; }
+.parsed-card h3   { margin-bottom: 16px; color: #1e1b4b; }
+.parsed-section   { margin-bottom: 20px; }
+.parsed-section h4{ font-size: 14px; color: #374151; margin-bottom: 8px; }
+.parsed-item      { border-left: 3px solid #4f46e5; padding-left: 12px; margin-bottom: 12px; }
+.muted            { font-size: 12px; color: #6b7280; margin: 2px 0; }
+.success-msg      { color: #16a34a; font-size: 13px; margin-top: 8px; }
+.empty-msg        { text-align: center; color: #6b7280; padding: 60px; }

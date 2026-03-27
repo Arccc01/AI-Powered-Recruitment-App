@@ -86,6 +86,8 @@ async function signup(req, res, next) {
       { expiresIn: "7d" },
     );
 
+    res.cookie("token",token)
+
     res.status(201).json({
       success: true,
       message: "Account created successfully!",

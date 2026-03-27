@@ -8,11 +8,6 @@ const {
 } = require("../services/ai.service");
 const Joi = require("joi");
 
-// ─── 1. STRUCTURE EXPERIENCE ─────────────────────────────────────────────────
-// POST /api/ai/structure-experience
-// User types freeform text → AI returns structured experience JSON
-// Frontend shows structured result → user confirms → saved to DB
-
 const structureExperienceHandler = async (req, res, next) => {
   try {
     const { error, value } = Joi.object({
@@ -25,7 +20,6 @@ const structureExperienceHandler = async (req, res, next) => {
         message: error.details[0].message,
       });
     }
-
     const structured = await structureExperience(value.raw_text);
 
     res.status(200).json({
@@ -44,10 +38,6 @@ const structureExperienceHandler = async (req, res, next) => {
     next(err);
   }
 };
-
-// ─── 2. SUGGEST SKILLS ───────────────────────────────────────────────────────
-// POST /api/ai/suggest-skills
-// Takes role + existing skills → returns skill suggestions
 
 const suggestSkillsHandler = async (req, res, next) => {
   try {
@@ -75,9 +65,6 @@ const suggestSkillsHandler = async (req, res, next) => {
   }
 };
 
-// ─── 3. GENERATE SUMMARY ─────────────────────────────────────────────────────
-// POST /api/ai/generate-summary
-// Reads candidate's full profile → generates professional bio
 
 const generateSummaryHandler = async (req, res, next) => {
   try {
@@ -110,7 +97,7 @@ const generateSummaryHandler = async (req, res, next) => {
       .select("*")
       .eq("profile_id", profile.id);
 
-    // Generate summary using all profile data
+   
     const result = await generateSummary({
       full_name: profile.full_name,
       role: profile.role,
@@ -120,7 +107,7 @@ const generateSummaryHandler = async (req, res, next) => {
       projects: projects || [],
     });
 
-    // Auto-save the generated summary to profile
+   
     await supabaseAdmin
       .from("profiles")
       .update({
@@ -139,9 +126,6 @@ const generateSummaryHandler = async (req, res, next) => {
   }
 };
 
-// ─── 4. RECOMMEND ROLES ──────────────────────────────────────────────────────
-// GET /api/ai/recommend-roles
-// Reads profile → recommends suitable job roles
 
 const recommendRolesHandler = async (req, res, next) => {
   try {
@@ -179,10 +163,6 @@ const recommendRolesHandler = async (req, res, next) => {
     next(err);
   }
 };
-
-// ─── 5. STRUCTURE PROJECT ────────────────────────────────────────────────────
-// POST /api/ai/structure-project
-// User types freeform project description → AI structures it
 
 const structureProjectHandler = async (req, res, next) => {
   try {

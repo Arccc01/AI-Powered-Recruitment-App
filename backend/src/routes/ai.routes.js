@@ -9,10 +9,9 @@ const {
   structureProjectHandler,
 } = require("../controllers/ai.controller");
 
-// All AI routes require login + candidate role
 router.use(authenticate, candidateOnly);
 
-// ── AI Endpoints ─────────────────────────────────────────
+// AI endpoints
 router.post("/structure-experience", structureExperienceHandler);
 router.post("/suggest-skills", suggestSkillsHandler);
 router.post("/generate-summary", generateSummaryHandler);

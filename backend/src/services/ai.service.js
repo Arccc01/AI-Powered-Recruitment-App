@@ -15,10 +15,11 @@ const parseGeminiJSON = (text) => {
   return JSON.parse(cleaned);
 };
 
-// ─── 1. STRUCTURE EXPERIENCE ─────────────────────────────────────────────────
-// Takes raw freeform text → returns structured experience JSON
-// Example input: "I worked at Google for 2 years doing backend stuff with Python"
-// Example output: { company, role, duration, key_responsibilities, technologies, impact }
+const askGemini = async (prompt) => {
+  const result = await model.generateContent(prompt);
+  const text = result.response.text();
+  return parseGeminiJSON(text);
+};
 
 const structureExperience = async (rawText) => {
   const prompt = `
@@ -49,11 +50,6 @@ Rules:
   return parseGeminiJSON(text);
 };
 
-// ─── 2. SUGGEST SKILLS ───────────────────────────────────────────────────────
-// Takes job role + existing skills → suggests additional relevant skills
-// Example input: role = "Frontend Developer", existing = ["React", "CSS"]
-// Example output: { suggested_skills: [{ name, level, reason }] }
-
 const suggestSkills = async (role, existingSkills = []) => {
   const prompt = `
 You are a tech hiring expert. Based on the job role and existing skills, suggest additional relevant skills.
@@ -83,10 +79,6 @@ Rules:
   const text = result.response.text();
   return parseGeminiJSON(text);
 };
-
-// ─── 3. GENERATE PROFILE SUMMARY ─────────────────────────────────────────────
-// Takes profile data → generates a professional bio/summary
-// Example output: "Passionate frontend developer with 2 years of experience..."
 
 const generateSummary = async (profileData) => {
   const { full_name, role, skills, experiences, projects, city } = profileData;
@@ -128,10 +120,6 @@ Rules:
   const text = result.response.text();
   return parseGeminiJSON(text);
 };
-
-// ─── 4. RECOMMEND ROLES ──────────────────────────────────────────────────────
-// Takes skills + experience → recommends suitable job roles
-// Example output: { recommended_roles: [{ title, match_percent, reason }] }
 
 const recommendRoles = async (skills, experiences) => {
   const prompt = `
@@ -198,10 +186,90 @@ Rules:
   return parseGeminiJSON(text);
 };
 
+// ─── 6. PARSE RESUME ─────────────────────────────────────────────────────────
+async function parseResume(resumeText) {
+  const prompt = `
+You are an expert resume parser.
+Extract all information from this resume text and return ONLY valid JSON, no extra text, no markdown.
+
+Resume Text:
+"${resumeText}"
+
+Return this exact structure:
+{
+  "full_name": "string",
+  "email": "string",
+  "phone": "string",
+  "city": "string",
+  "headline": "one line professional headline",
+  "summary": "2-3 line professional summary",
+  "skills": ["skill1", "skill2", "skill3"],
+  "experiences": [
+    {
+      "company": "string",
+      "role": "string",
+      "start_date": "string",
+      "end_date": "string or null if current",
+      "is_current": true or false,
+      "description": "string",
+      "skills_used": ["skill1", "skill2"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "string",
+      "description": "string",
+      "tech_stack": ["tech1", "tech2"],
+      "highlights": ["highlight1", "highlight2"]
+    }
+  ]
+}
+
+Rules:
+- Extract ALL experiences and projects from the resume
+- If a field is not found, use null
+- skills should be a flat array of strings
+`;
+  return await askGemini(prompt);
+}
+
+async function calculateMatchScore(candidateProfile, job) {
+  const prompt = `
+You are a recruitment AI assistant.
+Compare this candidate profile with the job description and return a match score.
+Return ONLY valid JSON, no extra text, no markdown.
+
+Candidate Profile:
+${JSON.stringify(candidateProfile)}
+
+Job:
+${JSON.stringify(job)}
+
+Return this exact structure:
+{
+  "match_score": 85,
+  "matching_skills": ["skill1", "skill2"],
+  "missing_skills": ["skill3", "skill4"],
+  "summary": "2-3 line summary of fit",
+  "recommendation": "Strong fit" or "Good fit" or "Partial fit" or "Weak fit"
+}
+
+Rules:
+- match_score is a number from 0 to 100
+- Be honest and accurate
+- matching_skills are skills candidate has that job needs
+- missing_skills are skills job needs that candidate lacks
+`;
+  return await askGemini(prompt);
+}
+
+// add to exports
 module.exports = {
   structureExperience,
   suggestSkills,
   generateSummary,
   recommendRoles,
   structureProject,
+  parseResume,         
+  calculateMatchScore,  
 };

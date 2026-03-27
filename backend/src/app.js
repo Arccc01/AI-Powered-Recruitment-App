@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 const { errorHandler, notFound } = require("./middleware/errorHandler");
 const authRoutes = require("./routes/auth.routes");
 const profileRoutes = require("./routes/profile.routes")
+const recruiterRoutes = require("./routes/recruiter.routes")
+const candidateRoutes = require("./routes/candidate.routes")
+const resumeRoutes = require("./routes/resume.routes")
 
 const app = express();
 
@@ -51,8 +54,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Routes
-app.use("/api/auth", authLimiter, authRoutes);
-app.use("/api/profile",authLimiter,profileRoutes)
+app.use("/api/auth", authRoutes);
+app.use("/api/profile",profileRoutes)
+app.use("/api/recruiter",recruiterRoutes)
+app.use("/api/candidate", candidateRoutes)
+app.use("/api/resume",resumeRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

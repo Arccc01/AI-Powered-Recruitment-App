@@ -1,0 +1,97 @@
+.profile-page {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+/* sidebar */
+.profile-sidebar   { display: flex; flex-direction: column; gap: 16px; }
+.avatar-card       { text-align: center; padding: 24px; }
+.big-avatar        { width: 72px; height: 72px; border-radius: 50%; background: #4f46e5; color: white; font-size: 28px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+.avatar-card h3    { font-size: 17px; color: #1e1b4b; margin-bottom: 4px; }
+.headline-text     { font-size: 13px; color: #6b7280; margin-bottom: 4px; }
+.city-text         { font-size: 13px; color: #6b7280; margin-bottom: 12px; }
+.last-saved        { font-size: 11px; color: #9ca3af; margin-bottom: 12px; }
+
+/* completion bar */
+.completion-wrap   { margin-top: 8px; }
+.completion-label  { display: flex; justify-content: space-between; font-size: 12px; color: #6b7280; margin-bottom: 6px; }
+.completion-bar    { height: 6px; background: #e5e7eb; border-radius: 10px; overflow: hidden; }
+.completion-fill   { height: 100%; background: #4f46e5; border-radius: 10px; transition: width 0.4s; }
+
+/* nav tabs */
+.profile-nav       { display: flex; flex-direction: column; gap: 4px; background: white; border-radius: 10px; padding: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.nav-tab           { text-align: left; padding: 10px 16px; border-radius: 6px; background: none; border: none; font-size: 14px; color: #374151; cursor: pointer; transition: all 0.15s; }
+.nav-tab:hover     { background: #f3f4f6; }
+.nav-tab.active    { background: #eef2ff; color: #4f46e5; font-weight: 500; }
+
+/* main */
+.profile-main      { display: flex; flex-direction: column; gap: 20px; }
+
+/* section card */
+.section-card      { padding: 24px; }
+.section-header    { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-header h3 { font-size: 17px; color: #1e1b4b; }
+
+/* profile view */
+.info-row          { display: flex; gap: 16px; margin-bottom: 12px; align-items: baseline; }
+.info-row span     { font-size: 13px; color: #9ca3af; min-width: 70px; }
+.info-row p        { font-size: 14px; color: #374151; }
+.summary-block     { margin-top: 8px; }
+.summary-block span{ font-size: 13px; color: #9ca3af; display: block; margin-bottom: 4px; }
+.summary-block p   { font-size: 14px; color: #374151; line-height: 1.6; }
+.resume-link       { display: inline-block; margin-top: 12px; color: #4f46e5; font-size: 14px; }
+
+/* profile form */
+.profile-form      { display: flex; flex-direction: column; gap: 4px; }
+.form-group        { margin-bottom: 14px; }
+.form-group label  { display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 5px; }
+.form-row          { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.autosave-hint     { font-size: 12px; color: #9ca3af; }
+
+/* inline form */
+.inline-form       { padding: 20px; margin-bottom: 20px; border: 1px solid #e5e7eb; }
+.form-actions      { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
+.check-group       { display: flex; align-items: center; gap: 8px; }
+.check-group input { width: auto; }
+.check-group label { margin: 0; font-size: 13px; }
+
+/* experience */
+.exp-item          { border-bottom: 1px solid #f3f4f6; padding: 16px 0; }
+.exp-item:last-child { border-bottom: none; }
+.exp-header        { display: flex; justify-content: space-between; align-items: start; }
+.exp-header h4     { font-size: 15px; color: #1e1b4b; margin-bottom: 2px; }
+.exp-company       { font-size: 13px; color: #6b7280; }
+.exp-date          { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+.exp-desc          { font-size: 13px; color: #374151; margin-top: 8px; line-height: 1.5; }
+.item-actions      { display: flex; gap: 8px; }
+.sm                { padding: 5px 10px; font-size: 12px; }
+
+/* skills */
+.skill-add-row     { display: flex; gap: 10px; margin-bottom: 16px; }
+.skills-wrap       { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chip        { display: flex; align-items: center; gap: 6px; background: #eef2ff; border-radius: 20px; padding: 5px 12px; }
+.skill-chip span   { font-size: 13px; color: #4f46e5; }
+.skill-chip button { background: none; border: none; color: #4f46e5; font-size: 12px; cursor: pointer; padding: 0; }
+.skill-chip.readonly button { display: none; }
+
+/* projects */
+.proj-item         { border-bottom: 1px solid #f3f4f6; padding: 16px 0; }
+.proj-item:last-child { border-bottom: none; }
+.tech-tags         { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.skill-tag         { background: #f3f4f6; color: #374151; padding: 3px 10px; border-radius: 20px; font-size: 12px; }
+
+/* resume tab */
+.upload-hint       { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.upload-row        { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.parsed-preview    { margin-top: 24px; border-top: 1px solid #e5e7eb; padding-top: 20px; }
+.parsed-preview h4 { font-size: 15px; color: #1e1b4b; margin-bottom: 16px; }
+.parsed-section    { margin-bottom: 16px; }
+.parsed-label      { font-size: 12px; color: #9ca3af; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; }
+.parsed-item-line  { font-size: 13px; color: #374151; margin-bottom: 4px; }
+.empty-section     { color: #9ca3af; font-size: 14px; padding: 20px 0; }
+.success-msg       { color: #16a34a; font-size: 13px; margin-top: 8px; }
+.error-msg         { color: #dc2626; font-size: 13px; margin-top: 8px; }
